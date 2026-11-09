@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUNTERS SENSI - Painel Oficial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #080808;
+            color: #f1f1f1;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #121212, #1a0000);
+            border: 1px solid #ff0033;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.3);
+        }
+        header h1 {
+            color: #ff0033;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.6);
+            letter-spacing: 2px;
+        }
+        header p {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        .menu-categorias {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .btn-cat {
+            background: #151515;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        .btn-cat:hover, .btn-cat.active {
+            background: #ff0033;
+            border-color: #ff3355;
+            box-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+        }
+        .painel-secao {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .painel-secao.ativo {
+            display: block;
+        }
+        .painel-secao h3 {
+            color: #ff3333;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 5px;
+        }
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+        select {
+            width: 100%;
+            background: #1a1a1a;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            outline: none;
+        }
+        select:focus {
+            border-color: #ff0033;
+        }
+        .resultado-box {
+            background: #140505;
+            border: 1px dashed #ff0033;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+        }
+        .resultado-box h4 {
+            color: #ff3333;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .config-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin: 6px 0;
+            color: #ccc;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 4px;
+        }
+        .config-item strong {
+            color: #fff;
+        }
+        .btn-gerar {
+            width: 100%;
+            background: #ff0033;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-gerar:active {
+            background: #b30024;
+        }
+        .btn-copiar-tudo {
+            width: 100%;
+            background: #222;
+            color: #00ffcc;
+            border: 1px solid #00ffcc;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-copiar-tudo:hover {
+            background: #00ffcc;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>🔥 HUNTERS SENSI 🔥</h1>
+            <p>Painel de Otimização & Sensi Xit v2.5</p>
+        </header>
+
+        <!-- Menu de Escolha -->
+        <div class="menu-categorias">
+            <button class="btn-cat active" onclick="mudarSecao('android')">📱 Android</button>
+            <button class="btn-cat" onclick="mudarSecao('ios')">🍏 iOS (iPhone)</button>
+            <button class="btn-cat" onclick="mudarSecao('mobilador')">⌨️ Mobilador</button>
+            <button class="btn-cat" onclick="mudarSecao('pc')">💻 PC Emulator</button>
+        </div>
+
+        <!-- Seção Android -->
+        <div id="sec-android" class="painel-secao ativo">
+            <h3>Selecione a Marca do seu Android</h3>
+            <label for="marca-android">Marca:</label>
+            <select id="marca-android">
+                <optgroup label="Principais Marcas">
+                    <option value="samsung">Samsung</option>
+                    <option value="xiaomi">Xiaomi / Redmi / Poco</option>
+                    <option value="motorola">Motorola</option>
+                    <option value="realme">Realme</option>
+                    <option value="lg">LG</option>
+                    <option value="asus">Asus (ROG Phone)</option>
+                </optgroup>
+                <optgroup label="Outras Marcas Globais">
+                    <option value="infinix">Infinix</option>
+                    <option value="oppo">Oppo</option>
+                    <option value="oneplus">OnePlus</option>
+                    <option value="vivo">Vivo</option>
+                    <option value="huawei">Huawei / Honor</option>
+                    <option value="blackshark">Black Shark</option>
+                    <option value="nubia">Nubia (Red Magic)</option>
+                    <option value="generico">Outro / Outras Marcas</option>
+                </optgroup>
+            </select>
+            <button class="btn-gerar" onclick="gerarSensi('android')">Gerar Sensi Android</button>
+            
+            <div id="res-android" class="resultado-box" style="display:none;">
+                <h4>⚡ Configurações Geradas (Android)</h4>
+                <div class="config-item"><span>Geral:</span> <strong id="a-geral">198</strong></div>
+                <div class="config-item"><span>Ponto Vermelho (Red Dot):</span> <strong id="a-red">195</strong></div>
+                <div class="config-item"><span>Mira 2x:</span> <strong id="a-m2">192</strong></div>
+                <div class="config-item"><span>Mira 4x:</span> <strong id="a-m4">190</strong></div>
+                <div class="config-item"><span>Mira AWM:</span> <strong id="a-awm">145</strong></div>
+                <div class="config-item"><span>Olhadinha:</span> <strong id="a-olha">150</strong></div>
+                <div class="config-item"><span>DPI Recomendada:</span> <strong id="a-dpi">680</strong></div>
+                <div class="config-item"><span>Velocidade Ponteiro:</span> <strong id="a-ponteiro">Máxima (Rápido)</strong></div>
+                <button class="btn-copiar-tudo" onclick="copiarConfig('android')">Copiar Configurações</button>
+            </div>
+        </div>
+
+        <!-- Seção iOS -->
+        <div id="sec-ios" class="painel-secao">
+            <h3>Selecione o seu Modelo de iPhone</h3>
+            <label for="modelo-ios">Modelo:</label>
+            <select id="modelo-ios">
+                <optgroup label="Linha iPhone 17 & 16">
+                    <option value="iphone17promax">iPhone 17 Pro Max</option>
+                    <option value="iphone17">iPhone 17 / 16 Pro</option>
+                    <option value="iphone16">iPhone 16 / 16 Plus</option>
+                </optgroup>
+                <optgroup label="Linha iPhone 15 & 14">
+                    <option value="iphone15promax">iPhone 15 Pro Max / 14 Pro Max</option>
+                    <option value="iphone15">iPhone 15 / 15 Plus / 14</option>
+                </optgroup>
+                <optgroup label="Linha iPhone 13 & 12">
+                    <option value="iphone13promax">iPhone 13 Pro Max / 12 Pro Max</option>
+                    <option value="iphone13">iPhone 13 / 13 Mini / 12</option>
+                </optgroup>
+                <optgroup label="Linha iPhone 11, X & SE">
+                    <option value="iphone11">iPhone 11 / 11 Pro / X / XR / XS</option>
+                    <option value="iphonese">iPhone SE (2020/2022) / 8 / 8 Plus</option>
+                </optgroup>
+            </select>
+            <button class="btn-gerar" onclick="gerarSensi('ios')">Gerar Sensi iOS</button>
+
+            <div id="res-ios" class="resultado-box" style="display:none;">
+                <h4>🍏 Configurações Geradas (iOS)</h4>
+                <div class="config-item"><span>Geral:</span> <strong id="i-geral">200</strong></div>
+                <div class="config-item"><span>Ponto Vermelho (Red Dot):</span> <strong id="i-red">198</strong></div>
+                <div class="config-item"><span>Mira 2x:</span> <strong id="i-m2">195</strong></div>
+                <div class="config-item"><span>Mira 4x:</span> <strong id="i-m4">192</strong></div>
+                <div class="config-item"><span>Mira AWM:</span> <strong id="i-awm">150</strong></div>
+                <div class="config-item"><span>Ajuste de Toque (iOS):</span> <strong id="i-toque">Leve / Rápido</strong></div>
+                <button class="btn-copiar-tudo" onclick="copiarConfig('ios')">Copiar Configurações</button>
+            </div>
+        </div>
+
+        <!-- Seção Mobilador -->
+        <div id="sec-mobilador" class="painel-secao">
+            <h3>Configuração para Mobilador (GG Mouse Pro)</h3>
+            <label for="tipo-hub">Tipo de Hub / Conexão:</label>
+            <select id="tipo-hub">
+                <option value="OTG 3.0 / Hub USB padrão">Hub USB Comum / OTG 3.0</option>
+                <option value="Teclado e Mouse mecânico gamer">Teclado Mecânico + Mouse Gamer</option>
+            </select>
+            <button class="btn-gerar" onclick="gerarSensi('mobilador')">Gerar Sensi Mobilador</button>
+
+            <div id="res-mobilador" class="resultado-box" style="display:none;">
+                <h4>⌨️ Configurações GG Mouse Pro</h4>
+                <div class="config-item"><span>Geral Jogo:</span> <strong>190</strong></div>
+                <div class="config-item"><span>Ponto Vermelho:</span> <strong>185</strong></div>
+                <div class="config-item"><span>Mira 2x / 4x:</span> <strong>180</strong></div>
+                <div class="config-item"><span>DPI do Mouse:</span> <strong id="m-dpimouse">1200 DPI</strong></div>
+                <div class="config-item"><span>Sensibilidade X (GG Pro):</span> <strong id="m-sensx">2.45</strong></div>
+                <div class="config-item"><span>Sensibilidade Y (GG Pro):</span> <strong id="m-sensy">3.80 (Capa Seca)</strong></div>
+                <button class="btn-copiar-tudo" onclick="copiarConfig('mobilador')">Copiar Configurações</button>
+            </div>
+        </div>
+
+        <!-- Seção PC Emulator -->
+        <div id="sec-pc" class="painel-secao">
+            <h3>Configurações para Emulador PC</h3>
+            <label for="emulador">Escolha o Emulador:</label>
+            <select id="emulador">
+                <option value="bluestacks">BlueStacks 5 (Hyper-V)</option>
+                <option value="mumu">MuMu Player 12</option>
+                <option value="smartgaga">SmartGaGa / Lite</option>
+            </select>
+            <button class="btn-gerar" onclick="gerarSensi('pc')">Gerar Sensi PC</button>
+
+            <div id="res-pc" class="resultado-box" style="display:none;">
+                <h4>💻 Configurações Emulador</h4>
+                <div class="config-item"><span>Geral do Jogo:</span> <strong>185</strong></div>
+                <div class="config-item"><span>Ponto Vermelho:</span> <strong>180</strong></div>
+                <div class="config-item"><span>Resolução PC:</span> <strong id="pc-res">1920x1080 (DPI 320)</strong></div>
+                <div class="config-item"><span>DPI do Mouse PC:</span> <strong>800 DPI</strong></div>
+                <div class="config-item"><span>Sensibilidade X / Y:</span> <strong id="pc-xy">X: 1.20 | Y: 0.85</strong></div>
+                <button class="btn-copiar-tudo" onclick="copiarConfig('pc')">Copiar Configurações</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function mudarSecao(secao) {
+            document.querySelectorAll('.painel-secao').forEach(el => el.classList.remove('ativo'));
+            document.querySelectorAll('.btn-cat').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById('sec-' + secao).classList.add('ativo');
+            event.currentTarget.classList.add('active');
+        }
+
+        function gerarSensi(tipo) {
+            if(tipo === 'android') {
+                let marca = document.getElementById('marca-android').value;
+                let dpiVal = "640";
+                if(marca === 'samsung') dpiVal = "680";
+                if(marca === 'xiaomi') dpiVal = "720";
+                if(marca === 'motorola') dpiVal = "590";
+                if(marca === 'asus') dpiVal = "750";
+                
+                document.getElementById('a-dpi').innerText = dpiVal;
+                document.getElementById('res-android').style.display = 'block';
+            } else if(tipo === 'ios') {
+                document.getElementById('res-ios').style.display = 'block';
+            } else if(tipo === 'mobilador') {
+                document.getElementById('res-mobilador').style.display = 'block';
+            } else if(tipo === 'pc') {
+                document.getElementById('res-pc').style.display = 'block';
+            }
+        }
+
+        function copiarConfig(tipo) {
+            alert('🔥 Configurações do ' + tipo.toUpperCase() + ' copiadas com sucesso! Só colar no Free Fire e amassar!');
+        }
+    </script>
+</body>
+</html>
